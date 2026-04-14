@@ -52,16 +52,16 @@ export default function Publications() {
                 <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
                     {/* Sidebar: Tabs */}
                     <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-32">
-                        <div className="bg-surface-secondary p-4 sm:p-8 rounded-[32px] border border-border-light shadow-sm">
-                            <div className="flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0 scrollbar-hide">
+                        <div className="bg-surface-secondary p-4 sm:p-6 lg:p-8 rounded-[32px] border border-border-light shadow-sm">
+                            <div className="flex flex-row lg:flex-col gap-2 sm:gap-3 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0 -mx-2 px-2 sm:mx-0 sm:px-0">
                                 {tabs.map((tab) => (
                                     <button
                                         key={tab.id}
                                         onClick={() => setActiveTab(tab.id)}
-                                        className={`group relative flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-2xl transition-all duration-300 outline-none whitespace-nowrap min-w-max lg:min-w-0 ${activeTab === tab.id ? 'bg-surface shadow-xl shadow-black/5' : 'hover:bg-surface/50'}`}
+                                        className={`group relative flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-2xl transition-all duration-300 outline-none whitespace-nowrap flex-shrink-0 lg:w-full ${activeTab === tab.id ? 'bg-surface shadow-xl shadow-black/5' : 'hover:bg-surface/50'}`}
                                     >
-                                        <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center transition-colors duration-300 ${activeTab === tab.id ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'bg-surface text-text-tertiary border border-border-light group-hover:bg-surface-secondary'}`}>
-                                            <tab.icon size={20} />
+                                        <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center transition-colors duration-300 flex-shrink-0 ${activeTab === tab.id ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'bg-surface text-text-tertiary border border-border-light group-hover:bg-surface-secondary'}`}>
+                                            <tab.icon size={18} className="sm:w-5 sm:h-5" />
                                         </div>
                                         <span className={`text-xs sm:text-sm font-bold tracking-tight uppercase transition-colors ${activeTab === tab.id ? 'text-primary' : 'text-text-tertiary'}`}>
                                             {tab.label}
@@ -78,7 +78,7 @@ export default function Publications() {
                             </div>
                         </div>
 
-                        {/* Secondary Image - Hidden on mobile if needed or made smaller */}
+                        {/* Secondary Image - Hidden on mobile */}
                         <div className="relative group rounded-[40px] overflow-hidden shadow-2xl hidden lg:block">
                             <img
                                 src="/images/pesquisa.jpeg"
@@ -101,40 +101,40 @@ export default function Publications() {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -10 }}
                                 transition={{ duration: 0.3 }}
-                                className="space-y-4 sm:space-y-6"
+                                className="space-y-3 sm:space-y-4"
                             >
                                 {data.map((item, i) => (
                                     <div
                                         key={i}
-                                        className="group relative bg-surface p-6 sm:p-8 rounded-[32px] border border-border-light shadow-sm hover:shadow-xl hover:shadow-black/5 transition-all duration-500"
+                                        className="group relative bg-surface p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-border-light shadow-sm hover:shadow-xl hover:shadow-black/5 transition-all duration-500"
                                     >
-                                        <div className="flex flex-col gap-4">
-                                            <div className="flex justify-between items-start gap-4">
-                                                <h4 className="text-lg sm:text-xl font-bold text-text-primary leading-tight group-hover:text-primary transition-colors">
+                                        <div className="flex flex-col gap-3 sm:gap-4">
+                                            <div className="flex justify-between items-start gap-3 sm:gap-4">
+                                                <h4 className="text-base sm:text-lg lg:text-xl font-bold text-text-primary leading-tight group-hover:text-primary transition-colors">
                                                     {item.title}
                                                 </h4>
-                                                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-surface-secondary flex items-center justify-center text-text-tertiary group-hover:bg-primary/10 group-hover:text-primary transition-all">
-                                                    <HiExternalLink size={20} />
+                                                <div className="flex-shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-surface-secondary flex items-center justify-center text-text-tertiary group-hover:bg-primary/10 group-hover:text-primary transition-all">
+                                                    <HiExternalLink size={18} className="sm:w-5 sm:h-5" />
                                                 </div>
                                             </div>
 
                                             {item.authors && (
-                                                <p className="text-xs font-medium text-text-tertiary bg-surface-secondary/50 p-3 rounded-xl border border-border-light/50">
+                                                <p className="text-[11px] sm:text-xs font-medium text-text-tertiary bg-surface-secondary/50 p-2.5 sm:p-3 rounded-xl border border-border-light/50">
                                                     {item.authors}
                                                 </p>
                                             )}
 
-                                            <div className="flex flex-wrap items-center gap-3 pt-2">
-                                                <span className="text-[10px] font-bold px-4 py-1.5 rounded-full bg-text-primary text-surface uppercase tracking-widest leading-none">
+                                            <div className="flex flex-wrap items-center gap-2 sm:gap-3 pt-1 sm:pt-2">
+                                                <span className="text-[9px] sm:text-[10px] font-bold px-3 sm:px-4 py-1.5 rounded-full bg-text-primary text-surface uppercase tracking-widest leading-none">
                                                     {item.year || item.period}
                                                 </span>
                                                 {item.journal && (
-                                                    <span className="text-[10px] font-bold px-4 py-1.5 rounded-full bg-primary/5 text-primary border border-primary/10 uppercase tracking-widest leading-none">
+                                                    <span className="text-[9px] sm:text-[10px] font-bold px-3 sm:px-4 py-1.5 rounded-full bg-primary/5 text-primary border border-primary/10 uppercase tracking-widest leading-none">
                                                         {item.journal}
                                                     </span>
                                                 )}
                                                 {item.role && (
-                                                    <span className={`text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-widest leading-none border ${item.role === 'Coordenadora' ? 'bg-primary/5 text-primary border-primary/20' : 'bg-surface-secondary text-text-secondary border-border'}`}>
+                                                    <span className={`text-[9px] sm:text-[10px] font-bold px-3 sm:px-4 py-1.5 rounded-full uppercase tracking-widest leading-none border ${item.role === 'Coordenadora' ? 'bg-primary/5 text-primary border-primary/20' : 'bg-surface-secondary text-text-secondary border-border'}`}>
                                                         {item.role}
                                                     </span>
                                                 )}
@@ -145,12 +145,12 @@ export default function Publications() {
                             </motion.div>
                         </AnimatePresence>
 
-                        <div className="mt-12 text-center lg:text-left pt-12 border-t border-border-light">
+                        <div className="mt-8 sm:mt-12 text-center lg:text-left pt-8 sm:pt-12 border-t border-border-light">
                             <a
                                 href="https://lattes.cnpq.br/9993128048836468"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-4 text-sm font-bold text-primary hover:text-primary-dark transition-all group"
+                                className="inline-flex items-center gap-3 sm:gap-4 text-sm font-bold text-primary hover:text-primary-dark transition-all group"
                             >
                                 <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
                                     <HiExternalLink size={18} />
