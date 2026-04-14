@@ -30,19 +30,13 @@ export default function ThemeToggle() {
         bg-surface-secondary border border-border-light hover:border-border
         transition-all duration-300 hover:scale-105"
         >
-            <motion.div
-                key={dark ? 'moon' : 'sun'}
-                initial={{ scale: 0, rotate: -90, opacity: 0 }}
-                animate={{ scale: 1, rotate: 0, opacity: 1 }}
-                exit={{ scale: 0, rotate: 90, opacity: 0 }}
-                transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-            >
+            <div className="flex items-center justify-center">
                 {dark ? (
                     <HiSun className="text-amber-400" size={18} />
                 ) : (
                     <HiMoon className="text-text-secondary" size={18} />
                 )}
-            </motion.div>
+            </div>
         </button>
     )
 }

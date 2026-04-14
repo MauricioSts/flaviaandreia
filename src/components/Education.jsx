@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { HiAcademicCap, HiBookOpen, HiLightBulb } from 'react-icons/hi'
 
 const educationData = [
     {
@@ -95,9 +95,7 @@ function TimelineItem({ item, index }) {
     const isEven = index % 2 === 0
 
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+        <div className={`relative flex flex-col sm:flex-row gap-8 sm:gap-12 items-start ${index % 2 === 0 ? '' : 'sm:flex-row-reverse'}`}>
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: index * 0.1, ease: "easeOut" }}
             className={`relative flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-20 ${isEven ? 'sm:flex-row' : 'sm:flex-row-reverse'}`}
@@ -143,6 +141,6 @@ function TimelineItem({ item, index }) {
 
             {/* Spacer Side */}
             <div className="hidden sm:block w-1/2" />
-        </motion.div>
+        </div>
     )
 }
