@@ -95,52 +95,51 @@ function TimelineItem({ item, index }) {
     const isEven = index % 2 === 0
 
     return (
-        <div className={`relative flex flex-col sm:flex-row gap-8 sm:gap-12 items-start ${index % 2 === 0 ? '' : 'sm:flex-row-reverse'}`}>
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: index * 0.1, ease: "easeOut" }}
-            className={`relative flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-20 ${isEven ? 'sm:flex-row' : 'sm:flex-row-reverse'}`}
-        >
+        <div className="relative">
             {/* Timeline Dot */}
             <div className="absolute left-[-32px] sm:left-1/2 sm:-translate-x-1/2 top-5 sm:top-1/2 sm:-translate-y-1/2 w-4 h-4 rounded-full bg-surface border-2 border-primary z-20 shadow-lg shadow-primary/20" />
 
-            {/* Content Side */}
-            <div className={`w-full sm:w-1/2 ${isEven ? 'sm:text-right' : 'sm:text-left'}`}>
-                <div className="group">
-                    <div className={`inline-flex items-center gap-3 px-5 py-2 rounded-full mb-4 shadow-sm transition-all duration-300 ${item.accent ? 'bg-primary text-white scale-105' : 'bg-surface-secondary text-text-tertiary border border-border-light hover:border-border'}`}>
-                        <span className="text-xs font-bold uppercase tracking-wider">{item.period}</span>
-                        {item.hours && <span className="w-1 h-1 rounded-full bg-current opacity-40" />}
-                        {item.hours && <span className="text-[10px] font-bold uppercase">{item.hours}</span>}
-                    </div>
+            {/* Content Container */}
+            <div className={`relative flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-20 ${isEven ? 'sm:flex-row' : 'sm:flex-row-reverse'}`}>
+                {/* Content Side */}
+                <div className={`w-full sm:w-1/2 ${isEven ? 'sm:text-right' : 'sm:text-left'}`}>
+                    <div className="group">
+                        <div className={`inline-flex items-center gap-3 px-5 py-2 rounded-full mb-4 shadow-sm transition-all duration-300 ${item.accent ? 'bg-primary text-white scale-105' : 'bg-surface-secondary text-text-tertiary border border-border-light hover:border-border'}`}>
+                            <span className="text-xs font-bold uppercase tracking-wider">{item.period}</span>
+                            {item.hours && <span className="w-1 h-1 rounded-full bg-current opacity-40" />}
+                            {item.hours && <span className="text-[10px] font-bold uppercase">{item.hours}</span>}
+                        </div>
 
-                    <h3 className="text-2xl font-bold text-text-primary mb-2 group-hover:text-primary transition-colors">
-                        {item.degree}
-                    </h3>
+                        <h3 className="text-2xl font-bold text-text-primary mb-2 group-hover:text-primary transition-colors">
+                            {item.degree}
+                        </h3>
 
-                    <p className={`text-sm font-bold tracking-tight uppercase mb-4 ${item.accent ? 'text-primary' : 'text-secondary'}`}>
-                        {item.institution}
-                    </p>
-
-                    {item.thesis && (
-                        <p className={`text-base text-text-secondary leading-relaxed italic mb-6 relative px-4 ${isEven ? 'sm:border-r-2 sm:border-border-light sm:px-4' : 'sm:border-l-2 sm:border-border-light sm:px-4'}`}>
-                            "{item.thesis}"
+                        <p className={`text-sm font-bold tracking-tight uppercase mb-4 ${item.accent ? 'text-primary' : 'text-secondary'}`}>
+                            {item.institution}
                         </p>
-                    )}
 
-                    <div className={`flex flex-wrap gap-2 ${isEven ? 'sm:justify-end' : 'sm:justify-start'}`}>
-                        {item.keywords.map((kw) => (
-                            <span
-                                key={kw}
-                                className="px-3 py-1 rounded-lg bg-surface-secondary border border-border-light text-[10px] font-bold uppercase tracking-wider text-text-tertiary transition-all hover:bg-surface hover:border-border"
-                            >
-                                {kw}
-                            </span>
-                        ))}
+                        {item.thesis && (
+                            <p className={`text-base text-text-secondary leading-relaxed italic mb-6 relative px-4 ${isEven ? 'sm:border-r-2 sm:border-border-light sm:px-4' : 'sm:border-l-2 sm:border-border-light sm:px-4'}`}>
+                                "{item.thesis}"
+                            </p>
+                        )}
+
+                        <div className={`flex flex-wrap gap-2 ${isEven ? 'sm:justify-end' : 'sm:justify-start'}`}>
+                            {item.keywords.map((kw) => (
+                                <span
+                                    key={kw}
+                                    className="px-3 py-1 rounded-lg bg-surface-secondary border border-border-light text-[10px] font-bold uppercase tracking-wider text-text-tertiary transition-all hover:bg-surface hover:border-border"
+                                >
+                                    {kw}
+                                </span>
+                            ))}
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            {/* Spacer Side */}
-            <div className="hidden sm:block w-1/2" />
+                {/* Spacer Side */}
+                <div className="hidden sm:block w-1/2" />
+            </div>
         </div>
     )
 }
