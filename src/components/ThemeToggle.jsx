@@ -11,18 +11,6 @@ export default function ThemeToggle() {
         return false
     })
 
-    const [isLoaded, setIsLoaded] = useState(false)
-
-    useEffect(() => {
-        // Aguarda o carregamento completo do site
-        if (document.readyState === 'complete') {
-            setIsLoaded(true)
-        } else {
-            window.addEventListener('load', () => setIsLoaded(true))
-            return () => window.removeEventListener('load', () => setIsLoaded(true))
-        }
-    }, [])
-
     useEffect(() => {
         const root = document.documentElement
         if (dark) {
@@ -36,20 +24,17 @@ export default function ThemeToggle() {
 
     return (
         <button
-            onClick={() => isLoaded && setDark(!dark)}
-            disabled={!isLoaded}
+            onClick={() => setDark(!dark)}
             aria-label={dark ? 'Ativar modo claro' : 'Ativar modo escuro'}
-            className={`relative w-9 h-9 rounded-full flex items-center justify-center
+            className="relative w-9 h-9 rounded-full flex items-center justify-center cursor-pointer
         bg-surface-secondary border border-border-light hover:border-border
-        transition-all duration-300 ${isLoaded ? 'hover:scale-105 cursor-pointer' : 'opacity-50 cursor-not-allowed'}`}
+        transition-all duration-200 hover:scale-105"
         >
-            <div className="flex items-center justify-center">
-                {dark ? (
-                    <HiSun className="text-amber-400" size={18} />
-                ) : (
-                    <HiMoon className="text-text-secondary" size={18} />
-                )}
-            </div>
+            {dark ? (
+                <HiSun className="text-amber-400" size={18} />
+            ) : (
+                <HiMoon className="text-text-secondary" size={18} />
+            )}
         </button>
     )
 }

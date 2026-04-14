@@ -138,51 +138,19 @@
 /* Custom Design Patterns - Mobile Optimized */
 .glass-effect {
   background: var(--glass);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-}
-
-/* iPhone-style buttons */
-button,
-a {
-  -webkit-user-select: none;
-  user-select: none;
-  cursor: pointer;
-}
-
-button:active,
-a:active {
-  transform: scale(0.97);
-  transition: transform 0.1s ease;
 }
 
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 100px;
-}
-
-/* Mobile-first spacing */
-section {
-  padding: 3rem 1rem;
-}
-
-@media (min-width: 768px) {
-  section {
-    padding: 5rem 2rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  section {
-    padding: 6rem 3rem;
-  }
+  scroll-padding-top: 80px;
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #064E3B 0%, #2D8A6B 50%, #10E38F 100%);
+  background: linear-gradient(135deg, #064E3B 0%, #10E38F 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -209,38 +177,36 @@ section {
   0%,
   100% {
     opacity: 0.3;
-    transform: scale(1) translate(0, 0);
   }
 
   50% {
     opacity: 0.5;
-    transform: scale(1.1) translate(10px, -10px);
   }
 }
 
 .animate-pulse-soft {
-  animation: pulse-soft 12s ease-in-out infinite;
+  animation: pulse-soft 8s ease-in-out infinite;
 }
 
 @keyframes float {
 
   0%,
   100% {
-    transform: translateY(0px) rotate(0deg);
+    transform: translateY(0px);
   }
 
   50% {
-    transform: translateY(-20px) rotate(0.5deg);
+    transform: translateY(-15px);
   }
 }
 
 .animate-float {
-  animation: float 10s ease-in-out infinite;
+  animation: float 6s ease-in-out infinite;
 }
 
-/* Custom Scrollbar */
+/* Custom scrollbar - simplified */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -248,18 +214,12 @@ section {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--surface-secondary);
-  border: 3px solid var(--surface);
-  border-radius: 100px;
+  background: var(--border);
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--border);
-}
-
-.dark ::-webkit-scrollbar-thumb {
-  background: #1F2623;
-  border: 3px solid var(--surface);
+  background: var(--text-tertiary);
 }
 
 /* iPhone-style Mobile Optimizations */

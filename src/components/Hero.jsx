@@ -1,5 +1,4 @@
 import { HiArrowDown } from 'react-icons/hi'
-import ImageWithLoading from './ImageWithLoading'
 
 export default function Hero() {
     return (
@@ -21,10 +20,11 @@ export default function Hero() {
 
                         {/* Main Image */}
                         <div className="relative rounded-[60px] overflow-hidden shadow-2xl ring-1 ring-border-light">
-                            <ImageWithLoading
+                            <img
                                 src="/images/perfil1.jpeg"
                                 alt="Dra. Flavia Andreia"
                                 className="w-full h-auto"
+                                fetchpriority="high"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-primary-900/10 to-transparent pointer-events-none" />
                         </div>

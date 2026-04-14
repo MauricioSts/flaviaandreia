@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { HiBriefcase, HiOfficeBuilding, HiChevronDown, HiAcademicCap } from 'react-icons/hi'
-import ImageWithLoading from './ImageWithLoading'
 
 const experiences = [
     {
@@ -110,7 +109,7 @@ export default function Experience() {
                         </div>
 
                         <div className="relative group rounded-[32px] overflow-hidden shadow-2xl">
-                            <ImageWithLoading
+                            <img
                                 src="/images/ensinando.jpeg"
                                 alt="Ensino"
                                 className="w-full h-auto group-hover:scale-105 transition-transform duration-700"
