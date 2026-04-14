@@ -331,3 +331,28 @@ textarea {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
 }
+
+/* Image loading skeleton animation */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-pulse {
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(90deg,
+      var(--surface-secondary) 0%,
+      var(--surface-tertiary) 50%,
+      var(--surface-secondary) 100%);
+  background-size: 1000px 100%;
+}
+
+/* Rounded inherit utility */
+.rounded-inherit {
+  border-radius: inherit;
+}

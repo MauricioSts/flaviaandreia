@@ -11,6 +11,18 @@ export default function ThemeToggle() {
         return false
     })
 
+    const [isLoaded, setIsLoaded] = useState(false)
+
+    useEffect(() => {
+        // Aguarda o carregamento completo do site
+        if (document.readyState === 'complete') {
+            setIsLoaded(true)
+        } else {
+            window.addEventListener('load', () => setIsLoaded(true))
+            return () => window.removeEventListener('load', () => setIsLoaded(true))
+        }
+    }, [])
+
     useEffect(() => {
         const root = document.documentElement
         if (dark) {
@@ -24,11 +36,12 @@ export default function ThemeToggle() {
 
     return (
         <button
-            onClick={() => setDark(!dark)}
+            onClick={() => isLoaded && setDark(!dark)}
+            disabled={!isLoaded}
             aria-label={dark ? 'Ativar modo claro' : 'Ativar modo escuro'}
-            className="relative w-9 h-9 rounded-full flex items-center justify-center cursor-pointer
+            className={`relative w-9 h-9 rounded-full flex items-center justify-center
         bg-surface-secondary border border-border-light hover:border-border
-        transition-all duration-300 hover:scale-105"
+        transition-all duration-300 ${isLoaded ? 'hover:scale-105 cursor-pointer' : 'opacity-50 cursor-not-allowed'}`}
         >
             <div className="flex items-center justify-center">
                 {dark ? (

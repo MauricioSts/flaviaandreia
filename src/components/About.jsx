@@ -1,4 +1,5 @@
 import { HiHeart, HiAcademicCap, HiUserGroup, HiShieldCheck } from 'react-icons/hi'
+import ImageWithLoading from './ImageWithLoading'
 
 const highlights = [
     {
@@ -44,7 +45,7 @@ export default function About() {
                 <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-center mb-16 sm:mb-24 lg:mb-32">
                     <div className="lg:col-span-5 relative">
                         <div className="relative rounded-3xl sm:rounded-[40px] lg:rounded-[60px] overflow-hidden shadow-2xl shadow-primary/10 ring-1 ring-border">
-                            <img
+                            <ImageWithLoading
                                 src="/images/foto1.jpeg"
                                 alt="Enfermagem obstétrica"
                                 className="w-full h-auto object-cover"
