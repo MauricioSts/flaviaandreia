@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { motion } from 'motion/react'
 import { HiSun, HiMoon } from 'react-icons/hi'
 
 export default function ThemeToggle() {

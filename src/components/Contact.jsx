@@ -1,5 +1,3 @@
-import { motion, useInView } from 'motion/react'
-import { useRef } from 'react'
 import { HiMail, HiLocationMarker, HiPhone, HiExternalLink } from 'react-icons/hi'
 
 export default function Contact() {

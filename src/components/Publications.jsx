@@ -1,4 +1,3 @@
-import { motion, AnimatePresence } from 'motion/react'
 import { useState } from 'react'
 import { HiBookOpen, HiDocumentText, HiExternalLink, HiBookmarkAlt } from 'react-icons/hi'
 
@@ -65,13 +64,6 @@ export default function Publications() {
                                     <span className={`text-xs sm:text-sm font-bold uppercase transition-colors hidden sm:inline ${activeTab === tab.id ? 'text-primary' : 'text-text-tertiary'}`}>
                                         {tab.label}
                                     </span>
-                                    {activeTab === tab.id && (
-                                        <motion.div
-                                            layoutId="activeTab"
-                                            className="absolute inset-0 border-2 border-primary/10 rounded-2xl"
-                                            transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
-                                        />
-                                    )}
                                 </button>
                             ))}
                         </div>
@@ -79,62 +71,50 @@ export default function Publications() {
                 </div>
 
                 {/* Content List - Mobile Optimized */}
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={activeTab}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.3 }}
-                        className="space-y-3 sm:space-y-4"
-                    >
-                        {data.map((item, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: i * 0.05 }}
-                                className="group relative bg-surface p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-border-light shadow-sm hover:shadow-xl hover:shadow-black/5 transition-all duration-500"
-                            >
-                                <div className="flex flex-col gap-3 sm:gap-4">
-                                    {/* Title */}
-                                    <h4 className="text-sm sm:text-base lg:text-lg font-bold text-text-primary leading-snug group-hover:text-primary transition-colors pr-8">
-                                        {item.title}
-                                    </h4>
+                <div className="space-y-3 sm:space-y-4">
+                    {data.map((item, i) => (
+                        <div
+                            key={i}
+                            className="group relative bg-surface p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-border-light shadow-sm hover:shadow-xl hover:shadow-black/5 transition-all duration-500"
+                        >
+                            <div className="flex flex-col gap-3 sm:gap-4">
+                                {/* Title */}
+                                <h4 className="text-sm sm:text-base lg:text-lg font-bold text-text-primary leading-snug group-hover:text-primary transition-colors pr-8">
+                                    {item.title}
+                                </h4>
 
-                                    {/* Authors */}
-                                    {item.authors && (
-                                        <p className="text-[10px] sm:text-xs font-medium text-text-tertiary bg-surface-secondary/50 p-2 sm:p-3 rounded-xl border border-border-light/50 leading-relaxed">
-                                            {item.authors}
-                                        </p>
-                                    )}
+                                {/* Authors */}
+                                {item.authors && (
+                                    <p className="text-[10px] sm:text-xs font-medium text-text-tertiary bg-surface-secondary/50 p-2 sm:p-3 rounded-xl border border-border-light/50 leading-relaxed">
+                                        {item.authors}
+                                    </p>
+                                )}
 
-                                    {/* Tags */}
-                                    <div className="flex flex-wrap items-center gap-2">
-                                        <span className="text-[9px] sm:text-[10px] font-bold px-3 py-1.5 rounded-full bg-text-primary text-surface uppercase tracking-wider leading-none">
-                                            {item.year || item.period}
+                                {/* Tags */}
+                                <div className="flex flex-wrap items-center gap-2">
+                                    <span className="text-[9px] sm:text-[10px] font-bold px-3 py-1.5 rounded-full bg-text-primary text-surface uppercase tracking-wider leading-none">
+                                        {item.year || item.period}
+                                    </span>
+                                    {item.journal && (
+                                        <span className="text-[9px] sm:text-[10px] font-bold px-3 py-1.5 rounded-full bg-primary/5 text-primary border border-primary/10 uppercase tracking-wider leading-none line-clamp-1">
+                                            {item.journal}
                                         </span>
-                                        {item.journal && (
-                                            <span className="text-[9px] sm:text-[10px] font-bold px-3 py-1.5 rounded-full bg-primary/5 text-primary border border-primary/10 uppercase tracking-wider leading-none line-clamp-1">
-                                                {item.journal}
-                                            </span>
-                                        )}
-                                        {item.role && (
-                                            <span className={`text-[9px] sm:text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider leading-none border ${item.role === 'Coordenadora' ? 'bg-primary/5 text-primary border-primary/20' : 'bg-surface-secondary text-text-secondary border-border'}`}>
-                                                {item.role}
-                                            </span>
-                                        )}
-                                    </div>
+                                    )}
+                                    {item.role && (
+                                        <span className={`text-[9px] sm:text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider leading-none border ${item.role === 'Coordenadora' ? 'bg-primary/5 text-primary border-primary/20' : 'bg-surface-secondary text-text-secondary border-border'}`}>
+                                            {item.role}
+                                        </span>
+                                    )}
                                 </div>
+                            </div>
 
-                                {/* External Link Icon */}
-                                <div className="absolute top-4 sm:top-6 right-4 sm:right-6 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-surface-secondary flex items-center justify-center text-text-tertiary group-hover:bg-primary/10 group-hover:text-primary transition-all">
-                                    <HiExternalLink size={16} className="sm:w-[18px] sm:h-[18px]" />
-                                </div>
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                </AnimatePresence>
+                            {/* External Link Icon */}
+                            <div className="absolute top-4 sm:top-6 right-4 sm:right-6 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-surface-secondary flex items-center justify-center text-text-tertiary group-hover:bg-primary/10 group-hover:text-primary transition-all">
+                                <HiExternalLink size={16} className="sm:w-[18px] sm:h-[18px]" />
+                            </div>
+                        </div>
+                    ))}
+                </div>
 
                 {/* Lattes Link */}
                 <div className="mt-8 sm:mt-12 text-center pt-8 sm:pt-12 border-t border-border-light">
@@ -153,6 +133,6 @@ export default function Publications() {
                     </a>
                 </div>
             </div>
-        </section>
+        </section >
     )
 }

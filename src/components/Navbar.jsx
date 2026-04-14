@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'motion/react'
 import { HiMenu, HiX } from 'react-icons/hi'
 import ThemeToggle from './ThemeToggle'
 
@@ -24,15 +23,10 @@ export default function Navbar() {
 
     return (
         <>
-            <motion.nav
-                initial={{ y: -100 }}
-                animate={{ y: 0 }}
-                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'py-2' : 'py-3'
-                    }`}
-            >
+            <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'py-2' : 'py-3'}`}>
                 <div className={`mx-3 sm:mx-4 md:mx-6 lg:max-w-7xl lg:mx-auto px-4 sm:px-5 h-14 sm:h-16 flex items-center justify-between transition-all duration-500 rounded-2xl sm:rounded-3xl ${scrolled
-                        ? 'glass-effect border border-white/20 shadow-xl backdrop-blur-2xl'
-                        : 'bg-transparent'
+                    ? 'glass-effect border border-white/20 shadow-xl backdrop-blur-2xl'
+                    : 'bg-transparent'
                     }`}>
                     {/* Logo */}
                     <a href="#hero" className="flex items-center gap-2 sm:gap-3 active:scale-95 transition-transform">
@@ -87,54 +81,42 @@ export default function Navbar() {
                         </button>
                     </div>
                 </div>
-            </motion.nav>
+            </nav>
 
             {/* Mobile Menu Overlay - iPhone Style */}
-            <AnimatePresence>
-                {mobileOpen && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-40 lg:hidden bg-black/50 backdrop-blur-md"
-                        onClick={() => setMobileOpen(false)}
+            {mobileOpen && (
+                <div
+                    className="fixed inset-0 z-40 lg:hidden bg-black/50 backdrop-blur-md"
+                    onClick={() => setMobileOpen(false)}
+                >
+                    <div
+                        className="absolute top-0 left-0 right-0 bg-surface rounded-b-[40px] shadow-2xl p-6 pt-24 border-b border-border-light"
+                        onClick={(e) => e.stopPropagation()}
                     >
-                        <motion.div
-                            initial={{ y: '-100%' }}
-                            animate={{ y: 0 }}
-                            exit={{ y: '-100%' }}
-                            transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-                            className="absolute top-0 left-0 right-0 bg-surface rounded-b-[40px] shadow-2xl p-6 pt-24 border-b border-border-light"
-                            onClick={(e) => e.stopPropagation()}
-                        >
-                            <div className="flex flex-col items-center gap-6 w-full">
-                                {navLinks.map((link, i) => (
-                                    <motion.a
-                                        key={link.href}
-                                        href={link.href}
-                                        onClick={() => setMobileOpen(false)}
-                                        initial={{ opacity: 0, y: -20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: i * 0.05 }}
-                                        className="text-lg text-text-primary font-bold hover:text-primary transition-colors active:scale-95 w-full text-center py-2"
-                                    >
-                                        {link.label}
-                                    </motion.a>
-                                ))}
-                                <div className="mt-4 w-full px-4">
-                                    <a
-                                        href="#contact"
-                                        onClick={() => setMobileOpen(false)}
-                                        className="flex justify-center items-center py-4 rounded-full bg-primary text-white font-bold shadow-xl shadow-primary/20 active:scale-95 transition-transform"
-                                    >
-                                        Fale Comigo
-                                    </a>
-                                </div>
+                        <div className="flex flex-col items-center gap-6 w-full">
+                            {navLinks.map((link) => (
+                                <a
+                                    key={link.href}
+                                    href={link.href}
+                                    onClick={() => setMobileOpen(false)}
+                                    className="text-lg text-text-primary font-bold hover:text-primary transition-colors active:scale-95 w-full text-center py-2"
+                                >
+                                    {link.label}
+                                </a>
+                            ))}
+                            <div className="mt-4 w-full px-4">
+                                <a
+                                    href="#contact"
+                                    onClick={() => setMobileOpen(false)}
+                                    className="flex justify-center items-center py-4 rounded-full bg-primary text-white font-bold shadow-xl shadow-primary/20 active:scale-95 transition-transform"
+                                >
+                                    Fale Comigo
+                                </a>
                             </div>
-                        </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                        </div>
+                    </div>
+                </div>
+            )}
         </>
     )
 }

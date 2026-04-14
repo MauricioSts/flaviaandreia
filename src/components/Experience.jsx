@@ -1,5 +1,4 @@
-import { motion, useInView, AnimatePresence } from 'motion/react'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { HiBriefcase, HiOfficeBuilding, HiChevronDown, HiAcademicCap } from 'react-icons/hi'
 
 const experiences = [
@@ -138,13 +137,7 @@ function ExperienceCard({ exp, index }) {
     const [expanded, setExpanded] = useState(index === 0)
 
     return (
-        <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
-            className={`transition-all duration-500 rounded-[32px] overflow-hidden border ${expanded ? 'bg-surface border-primary/20 shadow-2xl shadow-primary/5' : 'bg-surface/50 border-border-light hover:border-border'}`}
-        >
+        <div className={`transition-all duration-500 rounded-[32px] overflow-hidden border ${expanded ? 'bg-surface border-primary/20 shadow-2xl shadow-primary/5' : 'bg-surface/50 border-border-light hover:border-border'}`}>
             <button
                 onClick={() => setExpanded(!expanded)}
                 className="w-full flex items-center gap-4 sm:gap-6 p-5 sm:p-8 text-left outline-none"
@@ -172,28 +165,21 @@ function ExperienceCard({ exp, index }) {
                 </div>
             </button>
 
-            <AnimatePresence>
-                {expanded && (
-                    <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-                    >
-                        <div className="px-5 sm:px-8 pb-5 sm:pb-8 pt-0">
-                            <div className="h-[1px] w-full bg-border-light mb-4 sm:mb-6" />
-                            <ul className="space-y-3 sm:space-y-4">
-                                {exp.roles.map((role) => (
-                                    <li key={role} className="flex items-start gap-3 sm:gap-4">
-                                        <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0 shadow-sm" />
-                                        <span className="text-sm sm:text-base text-text-secondary font-medium leading-relaxed">{role}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </motion.div>
+            {expanded && (
+                <div>
+                    <div className="px-5 sm:px-8 pb-5 sm:pb-8 pt-0">
+                        <div className="h-[1px] w-full bg-border-light mb-4 sm:mb-6" />
+                        <ul className="space-y-3 sm:space-y-4">
+                            {exp.roles.map((role) => (
+                                <li key={role} className="flex items-start gap-3 sm:gap-4">
+                                    <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0 shadow-sm" />
+                                    <span className="text-sm sm:text-base text-text-secondary font-medium leading-relaxed">{role}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            )}
+        </div>
     )
 }
