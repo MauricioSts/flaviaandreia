@@ -36,12 +36,12 @@ export default function Publications() {
     const data = activeTab === 'articles' ? articles : activeTab === 'chapters' ? bookChapters : projects
 
     return (
-        <section id="publications" className="py-24 sm:py-32 bg-surface overflow-hidden">
-            <div className="max-w-6xl mx-auto px-6">
+        <section id="publications" className="py-16 sm:py-24 lg:py-32 bg-surface overflow-hidden">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6">
                 {/* Section Header */}
-                <div className="text-center mb-16 sm:mb-20 max-w-2xl mx-auto">
-                    <span className="text-[10px] font-bold text-primary uppercase tracking-[0.3em] mb-4 block">Produção Científica</span>
-                    <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-6">
+                <div className="text-center mb-12 sm:mb-16 lg:mb-20 max-w-2xl mx-auto">
+                    <span className="text-[10px] font-bold text-primary uppercase tracking-[0.3em] mb-3 sm:mb-4 block">Produção Científica</span>
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4 sm:mb-6">
                         Ciência que transforma.
                         <br />
                         <span className="text-text-secondary font-medium">Pesquisa que inspira.</span>
@@ -49,118 +49,108 @@ export default function Publications() {
                     <div className="w-16 h-1 bg-secondary/20 mx-auto rounded-full" />
                 </div>
 
-                <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-                    {/* Sidebar: Tabs */}
-                    <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-32">
-                        <div className="bg-surface-secondary p-4 sm:p-6 lg:p-8 rounded-[32px] border border-border-light shadow-sm">
-                            <div className="flex flex-row lg:flex-col gap-2 sm:gap-3 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0 -mx-2 px-2 sm:mx-0 sm:px-0">
-                                {tabs.map((tab) => (
-                                    <button
-                                        key={tab.id}
-                                        onClick={() => setActiveTab(tab.id)}
-                                        className={`group relative flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-2xl transition-all duration-300 outline-none whitespace-nowrap flex-shrink-0 lg:w-full ${activeTab === tab.id ? 'bg-surface shadow-xl shadow-black/5' : 'hover:bg-surface/50'}`}
-                                    >
-                                        <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center transition-colors duration-300 flex-shrink-0 ${activeTab === tab.id ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'bg-surface text-text-tertiary border border-border-light group-hover:bg-surface-secondary'}`}>
-                                            <tab.icon size={18} className="sm:w-5 sm:h-5" />
-                                        </div>
-                                        <span className={`text-xs sm:text-sm font-bold tracking-tight uppercase transition-colors ${activeTab === tab.id ? 'text-primary' : 'text-text-tertiary'}`}>
-                                            {tab.label}
-                                        </span>
-                                        {activeTab === tab.id && (
-                                            <motion.div
-                                                layoutId="activeTab"
-                                                className="absolute inset-0 border-2 border-primary/10 rounded-2xl"
-                                                transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
-                                            />
-                                        )}
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Secondary Image - Hidden on mobile */}
-                        <div className="relative group rounded-[40px] overflow-hidden shadow-2xl hidden lg:block">
-                            <img
-                                src="/images/pesquisa.jpeg"
-                                alt="Pesquisa"
-                                className="w-full h-auto transform group-hover:scale-105 transition-transform duration-700"
-                            />
-                            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 to-transparent" />
-                            <div className="absolute bottom-6 left-6 right-6 text-white text-xs font-bold uppercase tracking-widest opacity-90">
-                                Produção Científica
-                            </div>
+                {/* Mobile-First Tabs */}
+                <div className="mb-8 sm:mb-12">
+                    <div className="bg-surface-secondary p-3 sm:p-4 rounded-3xl border border-border-light shadow-sm">
+                        <div className="flex gap-2 overflow-x-auto scrollbar-hide -mx-1 px-1">
+                            {tabs.map((tab) => (
+                                <button
+                                    key={tab.id}
+                                    onClick={() => setActiveTab(tab.id)}
+                                    className={`relative flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 rounded-2xl transition-all duration-300 outline-none whitespace-nowrap flex-1 min-w-[100px] ${activeTab === tab.id ? 'bg-surface shadow-lg' : 'hover:bg-surface/50'}`}
+                                >
+                                    <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center transition-colors duration-300 ${activeTab === tab.id ? 'bg-primary text-white' : 'bg-surface text-text-tertiary'}`}>
+                                        <tab.icon size={16} className="sm:w-5 sm:h-5" />
+                                    </div>
+                                    <span className={`text-xs sm:text-sm font-bold uppercase transition-colors hidden sm:inline ${activeTab === tab.id ? 'text-primary' : 'text-text-tertiary'}`}>
+                                        {tab.label}
+                                    </span>
+                                    {activeTab === tab.id && (
+                                        <motion.div
+                                            layoutId="activeTab"
+                                            className="absolute inset-0 border-2 border-primary/10 rounded-2xl"
+                                            transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+                                        />
+                                    )}
+                                </button>
+                            ))}
                         </div>
                     </div>
+                </div>
 
-                    {/* Content List */}
-                    <div className="lg:col-span-8">
-                        <AnimatePresence mode="wait">
+                {/* Content List - Mobile Optimized */}
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={activeTab}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.3 }}
+                        className="space-y-3 sm:space-y-4"
+                    >
+                        {data.map((item, i) => (
                             <motion.div
-                                key={activeTab}
+                                key={i}
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -10 }}
-                                transition={{ duration: 0.3 }}
-                                className="space-y-3 sm:space-y-4"
+                                transition={{ delay: i * 0.05 }}
+                                className="group relative bg-surface p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-border-light shadow-sm hover:shadow-xl hover:shadow-black/5 transition-all duration-500"
                             >
-                                {data.map((item, i) => (
-                                    <div
-                                        key={i}
-                                        className="group relative bg-surface p-5 sm:p-6 lg:p-8 rounded-[24px] sm:rounded-[32px] border border-border-light shadow-sm hover:shadow-xl hover:shadow-black/5 transition-all duration-500"
-                                    >
-                                        <div className="flex flex-col gap-3 sm:gap-4">
-                                            <div className="flex justify-between items-start gap-3 sm:gap-4">
-                                                <h4 className="text-base sm:text-lg lg:text-xl font-bold text-text-primary leading-tight group-hover:text-primary transition-colors">
-                                                    {item.title}
-                                                </h4>
-                                                <div className="flex-shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-surface-secondary flex items-center justify-center text-text-tertiary group-hover:bg-primary/10 group-hover:text-primary transition-all">
-                                                    <HiExternalLink size={18} className="sm:w-5 sm:h-5" />
-                                                </div>
-                                            </div>
+                                <div className="flex flex-col gap-3 sm:gap-4">
+                                    {/* Title */}
+                                    <h4 className="text-sm sm:text-base lg:text-lg font-bold text-text-primary leading-snug group-hover:text-primary transition-colors pr-8">
+                                        {item.title}
+                                    </h4>
 
-                                            {item.authors && (
-                                                <p className="text-[11px] sm:text-xs font-medium text-text-tertiary bg-surface-secondary/50 p-2.5 sm:p-3 rounded-xl border border-border-light/50">
-                                                    {item.authors}
-                                                </p>
-                                            )}
+                                    {/* Authors */}
+                                    {item.authors && (
+                                        <p className="text-[10px] sm:text-xs font-medium text-text-tertiary bg-surface-secondary/50 p-2 sm:p-3 rounded-xl border border-border-light/50 leading-relaxed">
+                                            {item.authors}
+                                        </p>
+                                    )}
 
-                                            <div className="flex flex-wrap items-center gap-2 sm:gap-3 pt-1 sm:pt-2">
-                                                <span className="text-[9px] sm:text-[10px] font-bold px-3 sm:px-4 py-1.5 rounded-full bg-text-primary text-surface uppercase tracking-widest leading-none">
-                                                    {item.year || item.period}
-                                                </span>
-                                                {item.journal && (
-                                                    <span className="text-[9px] sm:text-[10px] font-bold px-3 sm:px-4 py-1.5 rounded-full bg-primary/5 text-primary border border-primary/10 uppercase tracking-widest leading-none">
-                                                        {item.journal}
-                                                    </span>
-                                                )}
-                                                {item.role && (
-                                                    <span className={`text-[9px] sm:text-[10px] font-bold px-3 sm:px-4 py-1.5 rounded-full uppercase tracking-widest leading-none border ${item.role === 'Coordenadora' ? 'bg-primary/5 text-primary border-primary/20' : 'bg-surface-secondary text-text-secondary border-border'}`}>
-                                                        {item.role}
-                                                    </span>
-                                                )}
-                                            </div>
-                                        </div>
+                                    {/* Tags */}
+                                    <div className="flex flex-wrap items-center gap-2">
+                                        <span className="text-[9px] sm:text-[10px] font-bold px-3 py-1.5 rounded-full bg-text-primary text-surface uppercase tracking-wider leading-none">
+                                            {item.year || item.period}
+                                        </span>
+                                        {item.journal && (
+                                            <span className="text-[9px] sm:text-[10px] font-bold px-3 py-1.5 rounded-full bg-primary/5 text-primary border border-primary/10 uppercase tracking-wider leading-none line-clamp-1">
+                                                {item.journal}
+                                            </span>
+                                        )}
+                                        {item.role && (
+                                            <span className={`text-[9px] sm:text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider leading-none border ${item.role === 'Coordenadora' ? 'bg-primary/5 text-primary border-primary/20' : 'bg-surface-secondary text-text-secondary border-border'}`}>
+                                                {item.role}
+                                            </span>
+                                        )}
                                     </div>
-                                ))}
-                            </motion.div>
-                        </AnimatePresence>
-
-                        <div className="mt-8 sm:mt-12 text-center lg:text-left pt-8 sm:pt-12 border-t border-border-light">
-                            <a
-                                href="https://lattes.cnpq.br/9993128048836468"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-3 sm:gap-4 text-sm font-bold text-primary hover:text-primary-dark transition-all group"
-                            >
-                                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
-                                    <HiExternalLink size={18} />
                                 </div>
-                                <span className="border-b-2 border-primary/20 group-hover:border-primary transition-all">
-                                    Perfil completo no Lattes
-                                </span>
-                            </a>
+
+                                {/* External Link Icon */}
+                                <div className="absolute top-4 sm:top-6 right-4 sm:right-6 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-surface-secondary flex items-center justify-center text-text-tertiary group-hover:bg-primary/10 group-hover:text-primary transition-all">
+                                    <HiExternalLink size={16} className="sm:w-[18px] sm:h-[18px]" />
+                                </div>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </AnimatePresence>
+
+                {/* Lattes Link */}
+                <div className="mt-8 sm:mt-12 text-center pt-8 sm:pt-12 border-t border-border-light">
+                    <a
+                        href="https://lattes.cnpq.br/9993128048836468"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-3 sm:gap-4 text-sm font-bold text-primary hover:text-primary-dark transition-all group active:scale-95"
+                    >
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
+                            <HiExternalLink size={18} className="sm:w-5 sm:h-5" />
                         </div>
-                    </div>
+                        <span className="border-b-2 border-primary/20 group-hover:border-primary transition-all">
+                            Perfil completo no Lattes
+                        </span>
+                    </a>
                 </div>
             </div>
         </section>
