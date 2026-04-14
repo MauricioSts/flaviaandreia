@@ -62,7 +62,7 @@ export default function About() {
                     >
                         <div className="relative rounded-[40px] lg:rounded-[80px] overflow-hidden shadow-2xl shadow-primary/10 aspect-[4/5] sm:aspect-square lg:aspect-auto lg:h-[650px] ring-1 ring-border">
                             <img
-                                src="/images/maternity.png"
+                                src="/images/foto1.jpeg"
                                 alt="Enfermagem obstétrica"
                                 className="w-full h-full object-cover transition-transform duration-1000 transform hover:scale-105"
                             />

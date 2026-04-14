@@ -2,67 +2,78 @@
 
 /* ===== Professional & Premium Design System ===== */
 :root {
-  /* Refined Light Mode - Sophisticated Healthcare */
-  --primary: #0d9488;
-  --primary-light: #14b8a6;
-  --primary-dark: #0f766e;
-  --primary-50: #f0fdfa;
-  --primary-100: #ccfbf1;
-  --primary-200: #99f6e4;
-  --primary-900: #134e4a;
+  /* Refined Light Mode - Sophisticated Healthcare Nursing */
+  --primary: #064E3B;
+  /* Verde Esmeralda Profundo - Header */
+  --primary-light: #10E38F;
+  /* Verde Mint Luminoso - CTAs */
+  --primary-dark: #021E17;
+  /* Verde Carvão - Texto */
+  --primary-50: #F4F9F7;
+  /* Off-White Mentolado - Background */
+  --primary-100: #D1FAE5;
+  --primary-200: #A7F3D0;
+  --primary-900: #064E3B;
 
-  --secondary: #0ea5e9;
-  --accent: #6366f1;
+  --secondary: #2D8A6B;
+  /* Verde Jade - Elementos gráficos */
+  --accent: #10E38F;
+  /* Verde Mint Luminoso - Destaque */
 
-  /* Surfaces - Soft Ivory with Teal Tint */
-  --surface: #ffffff;
-  --surface-secondary: #f8fafc;
-  --surface-tertiary: #f1f5f9;
+  /* Surfaces - Off-White Mentolado com Branco */
+  --surface: #F4F9F7;
+  --surface-secondary: #FFFFFF;
+  /* Branco puro para cards e elementos */
+  --surface-tertiary: #E8F5F0;
 
   /* Typography */
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-tertiary: #64748b;
+  --text-primary: #021E17;
+  /* Verde Carvão - Texto principal */
+  --text-secondary: #064E3B;
+  /* Verde Esmeralda - Texto secundário */
+  --text-tertiary: #2D8A6B;
+  /* Verde Jade - Texto terciário */
 
   /* Borders */
-  --border: #e2e8f0;
-  --border-light: #f1f5f9;
+  --border: #A7F3D0;
+  --border-light: #D1FAE5;
 
   /* Effects */
-  --glass: rgba(255, 255, 255, 0.7);
-  --shadow-premium: 0 10px 30px -5px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+  --glass: rgba(244, 249, 247, 0.7);
+  --shadow-premium: 0 10px 30px -5px rgba(6, 78, 59, 0.08), 0 4px 6px -2px rgba(6, 78, 59, 0.04);
 
   --ease-apple: cubic-bezier(0.28, 0.11, 0.32, 1);
 }
 
 .dark {
-  /* Ultra-Premium "Deep Midnight Teal" Dark Mode */
-  --primary: #2dd4bf;
-  /* Vibrant Mint/Teal */
-  --primary-light: #5eead4;
-  --primary-dark: #0d9488;
+  /* Ultra-Premium Dark Mode - Neutro com toques de verde */
+  --primary: #10E38F;
+  /* Verde Mint Luminoso - Destaque */
+  --primary-light: #34FBA6;
+  --primary-dark: #0AB370;
 
-  /* Rich Midnight Navy/Teal Backgrounds */
-  --surface: #020617;
-  /* Deepest Space Navy */
-  --surface-secondary: #0f172a;
-  /* Rich Navy */
-  --surface-tertiary: #13272e;
-  /* Deep Ocean Teal Hint */
+  /* Rich Dark Neutral Backgrounds */
+  --surface: #0A0F0D;
+  /* Quase preto com leve toque verde */
+  --surface-secondary: #151B19;
+  /* Cinza escuro esverdeado sutil */
+  --surface-tertiary: #1F2623;
+  /* Cinza médio com toque verde */
 
   /* High Legibility, Softer Whites */
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  /* Slate 400 */
-  --text-tertiary: #64748b;
-  /* Slate 500 */
+  --text-primary: #F4F9F7;
+  /* Off-White Mentolado */
+  --text-secondary: #94A3A0;
+  /* Cinza claro neutro */
+  --text-tertiary: #6B7876;
+  /* Cinza médio */
 
   /* Borders - Minimalist & Translucent */
-  --border: rgba(255, 255, 255, 0.08);
-  --border-light: rgba(255, 255, 255, 0.03);
+  --border: rgba(255, 255, 255, 0.1);
+  --border-light: rgba(255, 255, 255, 0.05);
 
   /* Effects - Deep Glass */
-  --glass: rgba(15, 23, 42, 0.6);
+  --glass: rgba(21, 27, 25, 0.7);
   --shadow-premium: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
 }
 
@@ -91,12 +102,17 @@
 
   --color-glass: var(--glass);
 
-  --font-sans: "Outfit", "Inter", system-ui, sans-serif;
-  --font-display: "Outfit", "Inter", sans-serif;
+  --font-sans: "Outfit", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-display: "Outfit", "Inter", -apple-system, sans-serif;
 }
 
-/* Base Styles */
+/* Base Styles - Mobile First */
 @layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
   body {
     margin: 0;
     padding: 0;
@@ -105,21 +121,68 @@
     color: var(--text-primary);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     transition: background-color 0.8s var(--ease-apple), color 0.6s var(--ease-apple);
+    overscroll-behavior-y: none;
+  }
+
+  /* iOS Safe Area */
+  @supports (padding: max(0px)) {
+    body {
+      padding-left: max(0px, env(safe-area-inset-left));
+      padding-right: max(0px, env(safe-area-inset-right));
+    }
   }
 }
 
-/* Custom Design Patterns */
+/* Custom Design Patterns - Mobile Optimized */
 .glass-effect {
   background: var(--glass);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid var(--border);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
 }
 
+/* iPhone-style buttons */
+button,
+a {
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+button:active,
+a:active {
+  transform: scale(0.97);
+  transition: transform 0.1s ease;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+/* Mobile-first spacing */
+section {
+  padding: 3rem 1rem;
+}
+
+@media (min-width: 768px) {
+  section {
+    padding: 5rem 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  section {
+    padding: 6rem 3rem;
+  }
+}
+
 .text-gradient {
-  background: linear-gradient(135deg, var(--primary) 0%, #38bdf8 50%, var(--accent) 100%);
+  background: linear-gradient(135deg, #064E3B 0%, #2D8A6B 50%, #10E38F 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -128,17 +191,17 @@
 .bg-mesh {
   background-color: var(--surface);
   background-image:
-    radial-gradient(at 0% 0%, rgba(20, 184, 166, 0.12) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(14, 165, 233, 0.12) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.12) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(20, 184, 166, 0.12) 0px, transparent 50%);
+    radial-gradient(at 0% 0%, rgba(16, 227, 143, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(45, 138, 107, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(6, 78, 59, 0.08) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(16, 227, 143, 0.08) 0px, transparent 50%);
 }
 
 .dark .bg-mesh {
   background-image:
-    radial-gradient(at 0% 0%, rgba(45, 212, 191, 0.1) 0px, transparent 40%),
-    radial-gradient(at 100% 0%, rgba(56, 189, 248, 0.1) 0px, transparent 40%),
-    radial-gradient(at 100% 100%, rgba(129, 140, 248, 0.1) 0px, transparent 40%);
+    radial-gradient(at 0% 0%, rgba(16, 227, 143, 0.06) 0px, transparent 40%),
+    radial-gradient(at 100% 0%, rgba(45, 138, 107, 0.05) 0px, transparent 40%),
+    radial-gradient(at 100% 100%, rgba(6, 78, 59, 0.04) 0px, transparent 40%);
 }
 
 @keyframes pulse-soft {
@@ -195,6 +258,58 @@
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #1F2623;
   border: 3px solid var(--surface);
+}
+
+/* iPhone-style Mobile Optimizations */
+@media (max-width: 640px) {
+  h1 {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+
+  /* Larger touch targets */
+  button,
+  a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Prevent zoom on input focus */
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
+}
+
+/* Smooth momentum scrolling */
+* {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Remove default iOS styling */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 12px;
+}
+
+/* iPhone notch safe areas */
+@supports (padding: max(0px)) {
+  .safe-top {
+    padding-top: max(1rem, env(safe-area-inset-top));
+  }
+
+  .safe-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
 }

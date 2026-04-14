@@ -111,9 +111,9 @@ export default function Experience() {
 
                         <div className="relative group rounded-[32px] overflow-hidden shadow-2xl">
                             <img
-                                src="/images/teaching.png"
+                                src="/images/ensinando.jpeg"
                                 alt="Ensino"
-                                className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+                                className="w-full h-auto group-hover:scale-105 transition-transform duration-700"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent" />
                             <div className="absolute bottom-6 left-6 right-6 text-white text-sm font-bold">

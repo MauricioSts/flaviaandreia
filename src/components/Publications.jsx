@@ -81,9 +81,9 @@ export default function Publications() {
                         {/* Secondary Image - Hidden on mobile if needed or made smaller */}
                         <div className="relative group rounded-[40px] overflow-hidden shadow-2xl hidden lg:block">
                             <img
-                                src="/images/research.png"
+                                src="/images/pesquisa.jpeg"
                                 alt="Pesquisa"
-                                className="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-700"
+                                className="w-full h-auto transform group-hover:scale-105 transition-transform duration-700"
                             />
                             <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 to-transparent" />
                             <div className="absolute bottom-6 left-6 right-6 text-white text-xs font-bold uppercase tracking-widest opacity-90">
